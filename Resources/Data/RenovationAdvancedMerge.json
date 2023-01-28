@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "room": {
+      "Name": "op",
+      "Id": 0,
+      "Active": false,
+      "Type": "operaition room",
+      "OccupationTime": 0
+    },
+    "rooms": [
+      {
+        "Name": "OP1",
+        "Id": 1,
+        "Active": true,
+        "Type": "Operation room",
+        "OccupationTime": 20
+      },
+      {
+        "Name": "OP2",
+        "Id": 2,
+        "Active": true,
+        "Type": "Operation room",
+        "OccupationTime": 10
+      }
+    ],
+    "type": "merge",
+    "dateTime": "2022-06-15T00:00:00",
+    "hours": "08:30",
+    "duration": 5
+  }
+]

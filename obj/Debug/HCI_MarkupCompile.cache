@@ -1,0 +1,20 @@
+﻿HCI
+
+
+winexe
+C#
+.cs
+D:\faks\3\2\HCI\HCI\obj\Debug\
+HCI
+none
+false
+DEBUG;TRACE
+D:\faks\3\2\HCI\HCI\App.xaml
+34-279048963
+11752997760
+76-347641843
+21-887966903
+MainWindow.xaml;Home1.xaml;Pages\RearrangeEquipmrnt\AddDinamicEquipment.xaml;Pages\RearrangeEquipmrnt\ScheduleRearrangeDinamicE .xaml;Pages\RearrangeEquipmrnt\SetSetAmountD.xaml;Pages\RearrangeEquipmrnt\SetDinamicAmounts.xaml;Pages\RearrangeEquipmrnt\SetStaticAmounts.xaml;Pages\RearrangeEquipmrnt\AddStaticEquipment.xaml;Pages\RearrangeEquipmrnt\ScheduleRearrangeStaticE.xaml;Pages\RearrangeEquipmrnt\ViewDinamicDetails.xaml;Pages\RearrangeEquipmrnt\ViewlStaticDetails.xaml;Pages\RearrangeEquipmrnt\ViewDinamic.xaml;Pages\RearrangeEquipmrnt\SetSetAmount.xaml;Pages\RearrangeEquipmrnt\ViewStatic.xaml;Pages\Renovation\ScheduleAdvancedSplit.xaml;Pages\Renovation\SpecifyNewRooms.xaml;Pages\Renovation\ScheduleAdvancedMergeChooseRooms.xaml;Pages\Renovation\AdvancedSplitReview.xaml;Pages\Renovation\AdvancedMergeReview.xaml;Pages\Renovation\ScheduleAdvancedMerge.xaml;Pages\Renovation\SimpleReview.xaml;Pages\Renovation\ScheduleSimple.xaml;Pages\Rooms\RoomsWithEquipment.xaml;Pages\Tutorial\Tutorial.xaml;View\QuestionnaireHospitaView.xaml;View\RenovationView.xaml;View\RearrangeEquipmentView.xaml;View\RejectedMedicineView.xaml;View\MedicineView .xaml;View\RegistrationMedicineView.xaml;View\DinamicEquipmentView.xaml;View\StaticEquipmentView.xaml;View\RoomView.xaml;View\HomeView.xaml;
+
+False
+

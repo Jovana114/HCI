@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "room": {
+      "Name": "OP1",
+      "Id": 1,
+      "Active": true,
+      "Type": "Operation room",
+      "OccupationTime": 20
+    },
+    "type": "simple",
+    "dateTime": "2022-06-15T00:00:00",
+    "hours": "10:30",
+    "duration": 1
+  }
+]

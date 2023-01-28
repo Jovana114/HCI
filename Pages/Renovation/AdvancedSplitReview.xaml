@@ -1,0 +1,192 @@
+﻿<Window x:Class="HCI.Pages.Renovation.AdvancedSplitReview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI.Pages.Renovation"
+        mc:Ignorable="d"
+        Height="619" Width="920">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="D:\faks\3\2\HCI\HCI\Resources\Images\bb.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock OpacityMask="#d0f0c0" Foreground="#87a96b" TextDecorations="Underline" Grid.ColumnSpan="9" Margin="0,-20,0,32" Text="Scheduled advanced renovations review" FontWeight="Light" FontSize="
+                   50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="Delete" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+                Click="Button_Click_2" Width="120" Height="40" Margin="0,-6,40,150" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="8" Grid.Column="7"/>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="View rooms" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+            Click="Button_Click_3" Grid.RowSpan="2" Margin="0,0,340,155" Grid.Row="4" Width="120" Height="40" Grid.ColumnSpan="6"/>
+
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="9" Grid.RowSpan="6"  Margin="0,30,0,-22">
+            <DataGrid Name="dgUsers" AutoGenerateColumns="False"  Grid.ColumnSpan="9"  Grid.RowSpan="3"  
+                      CanUserAddRows="False" HorizontalAlignment="Center" Height="287" Width="796" Margin="-20,50,0,0" 
+                       Background="#F0F0F0" SelectionMode="Single" GridLinesVisibility="All"
+                       HorizontalGridLinesBrush="Gray">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Width="*" Binding="{Binding id}" />
+                    <DataGridTextColumn Header="Room" Width="*" Binding="{Binding room.Name}" />
+                    <DataGridTextColumn Header="Type" Width="*" Binding="{Binding type}" />
+                    <DataGridTextColumn Header="Date" Width="*" Binding="{Binding dateTime}" />
+                    <DataGridTextColumn Header="Time" Width="*" Binding="{Binding hours}" />
+                    <DataGridTextColumn Header="Duration" Width="*" Binding="{Binding duration}" />
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#d0f0c0"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="17"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                        <Setter Property="Width" Value="160" />
+                        <Setter Property="Height" Value="40" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Height" Value="45" />
+                    </Style>
+
+                    <Style TargetType="DataGridCell">
+                        <Style.Resources>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                <Setter Property="Background" Value="#d0f0c0" />
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </DataGrid.Resources>
+
+            </DataGrid>
+            <DataGrid x:Name="dgUsers1" AutoGenerateColumns="False"  Grid.ColumnSpan="9"  Grid.RowSpan="3"  
+                      CanUserAddRows="False" Visibility="Hidden" HorizontalAlignment="Center" Height="127" Width="436" Margin="0,
+                       20,0,0" 
+                       Background="#F0F0F0" SelectionMode="Single" GridLinesVisibility="All"
+                       HorizontalGridLinesBrush="Gray">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#d0f0c0"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="17"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                        <Setter Property="Width" Value="220" />
+                        <Setter Property="Height" Value="40" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Height" Value="45" />
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Style.Resources>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#d0f0c0" />
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Id}" />
+                </DataGrid.Columns>
+
+            </DataGrid>
+            <Button Style="{DynamicResource RoundedButtonStyle}" Content="Close" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+            Click="Close" Height="43" Width="150" Margin="0,10,10,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,238 @@
+﻿<UserControl x:Class="HCI.Views.RoomView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI.Views"
+        xmlns:viewModel="clr-namespace:HCI.ViewModel"
+        xmlns:vml="clr-namespace:HCI.VML"
+        xmlns:data="clr-namespace:HCI.Model"
+        vml:ViewModelLocator.AutoHookedUpViewModel="True"  
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        xmlns:viewmodel="clr-namespace:HCI.ViewModel"
+        Height="619" Width="920">
+    <UserControl.DataContext>
+        <viewmodel:RoomViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+
+        <DataTemplate DataType="{x:Type data:RoomReport}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Path=From, Mode=OneWay}" FontSize="16" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding Path=To, Mode=OneWay}" TextWrapping="Wrap"/>
+            </StackPanel>
+        </DataTemplate>
+
+
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.ColumnSpan="9" Margin="0,0,0,32" Text="Room review" FontWeight="Light" FontSize="
+                   50" OpacityMask="#d0f0c0" Foreground="#87a96b" TextDecorations="Underline" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="9" Grid.RowSpan="6"  Margin="0,30,0,-22">
+
+            <DataGrid  Background="#F0F0F0" x:Name="dgrMain" ItemsSource="{Binding Rooms}" 
+                      HorizontalAlignment="Center" Height="295" Width="796" Margin="-20,50,0,0"
+                      SelectionMode="Single" SelectedItem="{Binding SelectedRoom}" 
+                       GridLinesVisibility="All"
+                       HorizontalGridLinesBrush="Gray">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#d0f0c0"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="17"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                        <Setter Property="Width" Value="160" />
+                        <Setter Property="Height" Value="40" />
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Height" Value="45" />
+                    </Style>
+
+                    <Style TargetType="DataGridCell">
+                        <Style.Resources>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                <Setter Property="Background" Value="#d0f0c0" />
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </DataGrid.Resources>
+
+            </DataGrid>
+
+            <StackPanel Orientation="Horizontal" Margin="0, 160, 0, 0" Visibility="Hidden" Width="916"  Name="addRoomSp">
+
+                <Label FontSize="15">Name:</Label>
+                <TextBox FontSize="15" Text="{Binding NText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label FontSize="15">Id:</Label>
+                <TextBox FontSize="15" Text="{Binding IText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label FontSize="15">Active:</Label>
+                <TextBox FontSize="15" Text="{Binding AText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label FontSize="15">Type:</Label>
+                <TextBox FontSize="15" Text="{Binding TText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label FontSize="15">Occupation time:</Label>
+                <TextBox FontSize="15" Text="{Binding OText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Button Style="{DynamicResource RoundedButtonStyle}" Content="Add" Foreground="Gray" Background="#d0f0c0" FontSize="20"
+                    Command="{Binding AddCommand}" Margin="74,0,0,0" Width="120" Height="40"/>
+
+            </StackPanel>
+
+        </StackPanel>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="Delete" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+                Command="{Binding DeleteCommand}" Width="120" Height="40" Margin="36,83,74,83" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="7" Grid.RowSpan="2">
+        </Button>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="ViewMore" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+                Width="120" Height="40" Margin="36,53,74,10" Grid.ColumnSpan="2" Grid.Column="7" Command="{Binding OpenCommand}" Grid.Row="4"/>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="Add room" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+            Click="AddNewRoom" Margin="52,83,58,83" Grid.Row="3" Width="120" Height="40" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="Report-pdf" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+            Margin="52,51,58,12" Grid.Row="4" Width="120" Height="40" Grid.ColumnSpan="2" Click="OpenReportCommand" />
+        <Grid Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Margin="0,73,0,79" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="41*"/>
+            </Grid.ColumnDefinitions>
+            <Expander FontWeight="Light" Name="exp" Visibility="Hidden" FontSize="22" Header="Specify date" ExpandDirection="Down"
+                      IsExpanded="False" Margin="-10,-105,0,-75" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Vertical" Margin="0,0,0,0">
+                    <TextBlock FontSize="25" Text="From:"/>
+                    <TextBox Text="{Binding CurrentNote.From, Mode=TwoWay}"/>
+                    <TextBlock FontSize="16" Text="{Binding CurrentNote.ValidationErrors[From]}"
+                               Foreground="Red" Height="20"/>
+                    <TextBlock FontSize="25" Text="To:"/>
+                    <TextBox Text="{Binding CurrentNote.To, Mode=TwoWay}"/>
+                    <TextBlock FontSize="16" Text="{Binding CurrentNote.ValidationErrors[To]}"
+                               Foreground="Red" Height="20"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" Content="Download" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+                Width="120" Height="32" Margin="0,-10,0,0" Grid.ColumnSpan="2" Grid.Column="7" Command="{Binding AddNoteCommand}" Grid.Row="4">
+                    </Button>
+                </StackPanel>
+            </Expander>
+        </Grid>
+
+
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,215 @@
+﻿<UserControl x:Class="HCI.Views.DinamicEquipmentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI.Views"
+        xmlns:viewModel="clr-namespace:HCI.ViewModel"
+        xmlns:vml="clr-namespace:HCI.VML"
+        xmlns:data="clr-namespace:HCI.Model"
+        vml:ViewModelLocator.AutoHookedUpViewModel="True"
+        mc:Ignorable="d"
+        Height="619" Width="920">
+    <UserControl.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#d0f0c0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="115*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="4" Grid.Column="3"  Grid.ColumnSpan="6" Margin="0,0,10,56" Grid.RowSpan="2">
+            <Label FontSize="15" Content="Filter by quantity: " Grid.Column="1" Margin="0,0,10,0" Grid.RowSpan="3" Grid.Row="4" Height="95" Width="526"/>
+            <CheckBox Content="Quantity is optimal" Command="{Binding FilterCommand1}" FontSize="15" Grid.ColumnSpan="3" Grid.Column="1" Margin="0,-50,81,45" Grid.RowSpan="3" Grid.Row="5" Height="26"/>
+            <CheckBox Content="Quantity is not optimal" Command="{Binding FilterCommand2}" FontSize="15" Margin="0,-40,250,25" Grid.ColumnSpan="3" Height="28" Width="315"/>
+
+        </StackPanel>
+
+        <TextBlock OpacityMask="#d0f0c0" Foreground="#87a96b" TextDecorations="Underline" Grid.ColumnSpan="9" Margin="0,-120,0,32" Text="Dinamic equipment review" FontWeight="Light" FontSize="
+                   50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+
+        <TextBox FontSize="20" Text="{Binding SearchText}" Background="#F0F0F0" Margin="100,20,0,0" Width="300" Height="41" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="5">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="18"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="Search" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+            Command="{Binding SearchCommand}" Margin="52,20,58,42" Grid.RowSpan="1" Grid.Row="0" Width="120" Grid.ColumnSpan="2" Grid.Column="6"/>
+
+
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="9" Grid.RowSpan="6"  Margin="0,30,0,-22">
+
+            <DataGrid  Background="#F0F0F0" x:Name="dgrMain" ItemsSource="{Binding DinamicEquipments}" 
+                      HorizontalAlignment="Center" VerticalAlignment="Top" Height="314" Width="797" Margin="-20,50,0,0"
+                      SelectionMode="Single" SelectedItem="{Binding SelectedDinamicEquipment}" 
+                       GridLinesVisibility="All"
+                       HorizontalGridLinesBrush="Gray">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#d0f0c0"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="17"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                        <Setter Property="Width" Value="160" />
+                        <Setter Property="Height" Value="40" />
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Height" Value="45" />
+                    </Style>
+
+                    <Style TargetType="DataGridCell">
+                        <Style.Resources>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                <Setter Property="Background" Value="#d0f0c0" />
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </DataGrid.Resources>
+
+            </DataGrid>
+
+            <StackPanel Orientation="Horizontal" Margin="0, 130, 0, 0" Width="916" Visibility="Hidden" Name="addRoomSp">
+
+                <Label FontSize="15">Name:</Label>
+                <TextBox FontSize="15" Text="{Binding NText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label FontSize="15">Id:</Label>
+                <TextBox FontSize="15" Text="{Binding IText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label FontSize="15">Type:</Label>
+                <TextBox FontSize="15" Text="{Binding TText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label FontSize="15">Current Quantity:</Label>
+                <TextBox FontSize="15" Text="{Binding CText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label FontSize="15">Optimal Quantity:</Label>
+                <TextBox FontSize="15" Text="{Binding OText}" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Width="70">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Button Style="{DynamicResource RoundedButtonStyle}" Content="Add" Foreground="Gray" Background="#d0f0c0" FontSize="20"
+                    Command="{Binding AddCommand}" Margin="74,0,0,0" Width="120" Height="40"/>
+
+            </StackPanel>
+
+        </StackPanel>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="Delete" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+                Command="{Binding DeleteCommand}" Width="120" Height="40" Margin="36,0,74,63" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="7">
+        </Button>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="Add" Foreground="Gray" Background="#d0f0c0" FontSize="20"    
+            Click="Add" Margin="52,0,58,63" Grid.Row="4" Width="120" Height="40" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</UserControl>
